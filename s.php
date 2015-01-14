@@ -24,9 +24,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>搜索结果-电影小二网</title>
-	<meta name="keywords" content="二手电影网中包含 <?php echo $active ?> 搜索结果" />
-	<meta name="description" content="二手电影网中包含 <?php echo $active ?> 的搜索结果的展示" />
+	<title>搜索结果-小二影视网</title>
+	<meta name="keywords" content="小二影视网中包含 <?php echo $active ?> 搜索结果" />
+	<meta name="description" content="小二影视网中包含 <?php echo $active ?> 的搜索结果的展示" />
 		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="Content-Language" content="zh-CN"/>
@@ -334,7 +334,7 @@
 							}
 							mysql_close($conn);
 							if($count==0)
-								echo "</br>".'  <div style="text-align:center">好像没有相关资源哦！请更换关键词重新搜索，或者耐心等待，只要不断关注电影小二网，就会第一时间得到资源，您不会失望哦！</div>'."</br>";
+								echo "</br>".'  <div style="text-align:center">好像没有相关资源哦！请更换关键词重新搜索，或者耐心等待，只要不断关注小二影视网，就会第一时间得到资源，您不会失望哦！</div>'."</br>";
 
 								echo '';
 						}
