@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" style="height:100%">
 <head>
-	<title>搜索结果-小二影视网</title>
-	<meta name="keywords" content="小二影视网中包含 <?php echo $active ?> 搜索结果" />
-	<meta name="description" content="小二影视网中包含 <?php echo $active ?> 的搜索结果的展示" />
+	<title>小二影视网_影视资源(电影/电视剧)搜索</title>
+	<meta name="keywords" content="小二影视网,影视,资源,电影,电视剧,搜索" />
+	<meta name="description" content="小二影视网_影视资源(电影/电视剧)搜索" />
 		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="Content-Language" content="zh-CN"/>
@@ -14,48 +14,63 @@
 
 	</script>		
 </head>
-
-<body>
-	<div id="wrapper" class="width_1">
+<body style="height:100%">
+	<div id="wrapper" class="width_1" style="height:100%;position:relative;">
 		<div id="header">
 			<div id="service_list">
-	<div id="service_list_inner" class="width_1">
-		<div id="sub_date">
-			<script type="text/javascript">			
-				function s()  
-				{   
-					var a = new Date();
-					var b = a.getFullYear();
-					var c = a.getMonth()+1; 
-					var d = a.getDate();
-					var	e = a.getDay();
-					var f = new Array("天","一","二","三","四","五","六");					
-					return b+"年"+c+"月"+d+"日 星期"+f[e];   
-				}
-				document.write(s());				
-			</script>
-			<span id="txt"></span>
-		</div>
-		<ul>
-			<li><a href="#" id="movie002_day_1" onclick="SetCookie('movie002_day','day');window.location.reload();">日间模式</a>｜<a href="#" id="movie002_day_2" onclick="SetCookie('movie002_day','night'); window.location.reload();">夜间模式</a></li>
-			<li><a href="#" id="movie002_width_1" onclick="SetCookie('movie002_width','1024'); window.location.reload();">标准屏</a>｜<a href="#" id="movie002_width_2" onclick="SetCookie('movie002_width','1280');window.location.reload();">宽频</a></li>
-			<li><a href="http://s.x2y4.com/siteindex.html" target="_blank">索引</a>｜<a href="http://s.x2y4.com/siteindex.html" target="_blank">地图</a></li>
-		</ul>
-	</div>
-</div>
+				<div id="service_list_inner" class="width_1">
+					<div style="position:absolute;top:6px;left:15px;font-size:18px;font-weight:700">小二影视(X2Y4)</div>
+					<div id="sub_date">
+						<script type="text/javascript">			
+							function s()  
+							{   
+								var a = new Date();
+								var b = a.getFullYear();
+								var c = a.getMonth()+1; 
+								var d = a.getDate();
+								var	e = a.getDay();
+								var f = new Array("天","一","二","三","四","五","六");					
+								return b+"年"+c+"月"+d+"日 星期"+f[e];   
+							}
+							document.write(s());				
+						</script>
+						<span id="txt"></span>
+					</div>
+					<ul>
+						<li><a href="#" id="movie002_day_1" onclick="SetCookie('movie002_day','day');window.location.reload();">日间模式</a>｜<a href="#" id="movie002_day_2" onclick="SetCookie('movie002_day','night'); window.location.reload();">夜间模式</a></li>
+						<li><a href="#" id="movie002_width_1" onclick="SetCookie('movie002_width','1024'); window.location.reload();">标准屏</a>｜<a href="#" id="movie002_width_2" onclick="SetCookie('movie002_width','1280');window.location.reload();">宽频</a></li>
+						<li><a href="http://s.x2y4.com/siteindex.html" target="_blank">索引</a>｜<a href="http://s.x2y4.com/siteindex.html" target="_blank">地图</a></li>
+					</ul>
+				</div>
+			</div>
 	<!-- header-inner -->
-			
 
-
-		</div>
+	</div>
 		<!-- header -->
-		<div id="middle" class="width_2">	
-			<div id="content"  class="width_3 listcontent">
-				<div>
+		<div id="middle">
+			<div>
+				<script type="text/javascript">
+					function a()  
+					{   
+						var n = new Date();
+						var h = n.getHours();
+						var m='';
+						if(h>=23||h<=6)
+						{
+							m='<div style="color:#000;border:1px solid #FF3300;font-size:12px;background:#FFFFDF;padding:5px;width:600px;margin:0 auto;text-align:center">友情提醒： 亲，已经是晚上'+h+'点多了，为了您和家人的健康，请注意减少熬夜,注意休息哦!</div>';
+						}
+						return m;
+					}
+					document.write(a());
+				</script>
+			</div>		
+			<div style="height:200px;text-align:center;margin-top:60px">
+				<div style="margin:0 auto">
+					<div style="font-size:20px">小二影视(X2Y4)</div>
 					<form name="f1" action="s.php" method="get">
 						<div id="search">				
-							<input id="submittext" class="searchinput"  name="q" type="text" value="<?php echo $q ?>" onclick="this.value='';"  onblur="if (this.value == &#39;&#39;) {this.value = &#39;<?php echo $q ?>&#39;;}" />					
-							<input type="submit" class="searchsubmit" value="搜索" />
+							<input id="submittext" class="searchinput"  name="q" type="text" style="width:300px"/>					
+							<input type="submit" class="searchsubmit" value=" 小二服务 " style="width:80px"/>
 						</div>
 					</form>
 				</div>
@@ -63,43 +78,24 @@
 				</ul>
 			</div>
 			<!-- content -->
-				<div>
-					<div >
-						<script type="text/javascript">
-							function a()  
-							{   
-								var n = new Date();
-								var h = n.getHours();
-								var m='';
-								if(h>=22||h<=6)
-								{
-									m='<div style="color:#000;border:1px solid #FF3300;font-size:12px;background:#FFFFDF;padding:2px;">友情提醒： 亲，已经是晚上'+h+'点多了，</br>为了您和家人的健康，请注意减少熬夜!</div>';
-								}
-								return m;
-							}
-							document.write(a());
-						</script>
-					</div>
-				</div>
-			</div>
+			</br>
+			</br>		
+		</div>
 		<!-- middle -->
-		<div id="footer">
+		<div id="footer" style="position:absolute;bottom:0;width: 100%;">
 			<a href="#top" title="顶部" class="gotop_btn gotop_btn_up" id="goTopButton">∧</br>顶部</a>
-<div id="footer-nav">
-	<a href="http://s.x2y4.com/author/aboutus.html">关于我们</a> | 	
-	<a href="http://s.x2y4.com/author/opinion.html">留言反馈</a> | 
-	<a href="http://s.x2y4.com/author/mianze.html">免责声明</a> | 
-	<a href="http://s.x2y4.com/author/links.html">友情链接</a> | 
-	<a href="javascript:void(0);" onclick="AddFavorite('小二影视网','http://movie002.com')">收藏本站</a> | 
-	<a href="http://new.cnzz.com/v1/login.php?siteid=1253404551" rel="nofollow" target="_blank">CNZZ</a>
-</div>
-<div class="cpright colorlittle">
-© 2013 - 2015 &nbsp;<a href="http://movie002.com" title="电影大全,电视剧大全">小二影视网</a> &nbsp;All Rights Reserved <a href="http://www.miibeian.gov.cn" target="_blank">免备案</a>
-</div>
-<div style="margin:7px;color:#777">
-本站旨在影视宣传和学习交流,所有内容程序自动收集发布,仅提供<b>资源页面的链接</b>，如侵犯了您的权益,请联系我们删除:a#x2y4.com,欢迎举报违法问题！
-</div>
-
+			<div id="footer-nav">
+				<a href="html/aboutus.html">关于我们</a> | 	
+				<a href="html/opinion.html">留言反馈</a> | 
+				<a href="html/mianze.html">免责声明</a> | 
+				<a href="javascript:void(0);" onclick="AddFavorite('小二影视网','http://movie002.com')">收藏本站</a>
+			</div>
+			<div class="cpright colorlittle">
+			© 2013 - 2015 &nbsp;<a href="http://movie002.com" title="电影大全,电视剧大全">小二影视网</a> &nbsp;All Rights Reserved <a href="http://www.miibeian.gov.cn" target="_blank">免备案</a>
+			</div>
+			<div style="margin:7px;color:#777">
+			本站旨在影视宣传和学习交流,所有内容程序自动收集发布,仅提供<b>资源页面的链接</b>，如侵犯了您的权益,请联系我们删除:a#x2y4.com,欢迎举报违法问题！
+			</div>
 		</div>
 	</div>
 	<!-- wrapper -->
