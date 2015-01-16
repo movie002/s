@@ -18,11 +18,10 @@
 		$aid = htmlspecialchars($_REQUEST['aid']);
 		$active='资源网站 '.$aid.' 的最新资源列表';
 	}
-
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" style="height:100%">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>搜索结果-小二影视网</title>
 	<meta name="keywords" content="小二影视网中包含 <?php echo $active ?> 搜索结果" />
@@ -37,8 +36,8 @@
 
 	</script>		
 </head>
-<body style="height:100%">
-	<div id="wrapper" class="width_1" style="height:100%;position:relative;">
+<body>
+	<div id="wrapper" class="width_1">
 		<div id="header">
 			<div id="service_list">
 				<div id="service_list_inner" class="width_1">
@@ -81,7 +80,7 @@
 	<!-- header-inner -->			
 	</div>
 		<!-- header -->
-		<div id="middle" class="width_2">
+		<div id="middle" class="width_2" style="min-height:600px;_height:600px;">
 			<div id="title">
 				<div style="border-bottom:1px solid #ccc;padding:0 0 10px 5px;font-weight:500">以下是 <span class="cred">"<?php echo $active ?>"</span> 的搜索结果</div>				
 			</div>		
@@ -105,10 +104,23 @@
 							$DH_input_html  = $DH_html_path . 'list_each.html';
 							$DH_output_content = dh_file_get_contents("$DH_input_html");
 							
-							if($aid!='')
-								$sql="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality ,l.linkway,p.hot,p.catcountry,p.cattype from link l,page p where l.pageid=p.id and l.author like '$aid' order by l.updatetime desc  limit 0,60";
+							//if($aid!='')
+							//	$sql="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality ,l.linkway,p.hot,p.catcountry,p.cattype from link l,page p where l.pageid=p.id and l.author like '$aid' order by l.updatetime desc limit 0,60";
+							//if($q!='')
+							//	$sql="select * from page where title like '%$q%' or aka like '%$q%' order by updatetime desc limit 0,5";
+							
+							$sql="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality ,l.linkway,p.hot,p.catcountry,p.cattype from link l,page p where l.pageid=p.id";
+							
 							if($q!='')
-								$sql="select * from page where title like '%$q%' or aka like '%$q%' order by updatetime desc  limit 0,15";
+							{
+								$sql .=" and l.title like '%$q%'";
+								
+							}
+							if($aid!='')
+							{
+								$sql .=" and l.author like '$aid'";
+							}
+							$sql .=" order by l.updatetime desc limit 0,30";
 							
 							$results=dh_mysql_query($sql);
 							$count=0;
@@ -119,19 +131,19 @@
 								{	
 									$count ++;
 									$page_path = output_page_path($DH_html_url,$row['pageid']);
-									if($q!='')
-									{
-										$DH_output_content_page = dh_replace_snapshot('list',$row,$DH_output_content,true);
-										//$page_path = output_page_path($DH_html_url,$row['id']);
-										$DH_output_content_page = str_replace("%title_link%",$page_path,$DH_output_content_page);	
-										echo $DH_output_content_page;
-									}
-									else
-									{
+									//if($q!='')
+									//{
+									//	$DH_output_content_page = dh_replace_snapshot('list',$row,$DH_output_content,true);
+									//	//$page_path = output_page_path($DH_html_url,$row['id']);
+									//	$DH_output_content_page = str_replace("%title_link%",$page_path,$DH_output_content_page);	
+									//	echo $DH_output_content_page;
+									//}
+									//else
+									//{
 										$updatef = date("m-d",strtotime($row['updatetime']));
 										$lieach = '<li><span>'.$countrymeta.'</span> <span class="width90pre">【'.$linkway[$row['linkway']].'】<a href="'.$row['link'].'" target="_blank">'.$row['title'].'['.$row['author'].']</a></span> <span class="rt100v2"><a href="'.$page_path.'" target="_blank" rel="nofollow">汇总页面</a></span><span class="rt60v2">'.$row['hot'].' </span> <span class="rt5v2" > '.$updatef.'</span></li>';
 										echo $lieach;
-									}
+									//}
 								}
 							}
 							mysql_close($conn);
@@ -166,7 +178,7 @@
 			</div>
 		</div>
 		<!-- middle -->
-		<div id="footer" style="position:absolute;bottom:0;width: 100%;">
+		<div id="footer" style="bottom:0;width:100%;">
 			<a href="#top" title="顶部" class="gotop_btn gotop_btn_up" id="goTopButton">∧</br>顶部</a>
 			<div id="footer-nav">
 				<a href="html/aboutus.html">关于我们</a> | 	
