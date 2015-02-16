@@ -487,8 +487,7 @@ if($dcount>0)
 							$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以太长哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
                         }
                         else
-						{
-							require("../php/genv/common.php");
+						{							
 							require("../php/common/base.php");
 							require("../php/common/dbaction.php");
 							require("../php/config.php");
