@@ -105,7 +105,6 @@ if( isset($_GET['cd']) || isset($_GET['g']))
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>搜索结果-影粉搜搜</title>
-    <link rel='canonical' href='http://s.yfsoso.com/s.php'/>
 	<meta name="keywords" content="影粉搜搜网中包含 <?php echo $active ?> 搜索结果" />
 	<meta name="description" content="影粉搜搜网中包含 <?php echo $active ?> 的搜索结果的展示" />
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
@@ -487,7 +486,8 @@ if($dcount>0)
 							$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以太长哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
                         }
                         else
-						{							
+						{
+							require("../php/genv/common.php");
 							require("../php/common/base.php");
 							require("../php/common/dbaction.php");
 							require("../php/config.php");
@@ -671,7 +671,6 @@ if($dcount>0)
 			© 2015 - 2018 &nbsp;<a href="http://s.yfsoso.com" title="电影大全,电视剧大全">影粉搜搜网</a> &nbsp;All Rights Reserved <a href="http://www.miibeian.gov.cn" target="_blank">免备案</a>
 			</div>
 			<div style="margin:7px;color:#777">
-			本站旨在影视宣传和学习交流,所有内容程序自动收集发布,仅提供资源页面的搜索链接，如侵犯了您的权益,请联系我们删除:a#yfsoso.com,欢迎举报违法问题！
 			</div>
 		</div>
 	</div>
