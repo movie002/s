@@ -487,7 +487,7 @@ if($dcount>0)
                         }
                         else
 						{
-							require("../php/genv/common.php");
+							require("../php/config.php");
 							require("../php/common/base.php");
 							require("../php/common/dbaction.php");
 							require("../php/common/page_navi.php");
