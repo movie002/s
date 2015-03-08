@@ -665,7 +665,8 @@ if($dcount>0)
 				<a href="/about/aboutus.html">关于我们</a> | 	
 				<a href="/about/talk.html">留言反馈</a> | 
 				<a href="/about/mianze.html">免责声明</a> | 
-				<a href="javascript:void(0);" onclick="AddFavorite('影粉搜搜','http://yfsoso.com')">收藏本站</a>
+				<a href="javascript:void(0);" onclick="AddFavorite('影粉搜搜','http://yfsoso.com')">收藏本站</a> |
+				<a href="http://new.cnzz.com/v1/login.php?siteid=1254506275" rel="nofollow" target="_blank">CNZZ</a>
 			</div>
 			<div class="cpright colorlittle">
 			© 2015 - 2018 &nbsp;<a href="http://s.yfsoso.com" title="电影大全,电视剧大全">影粉搜搜网</a> &nbsp;All Rights Reserved <a href="http://www.miibeian.gov.cn" target="_blank">免备案</a>
@@ -760,7 +761,7 @@ if($dcount>0)
 		(function() {
 			var cnzz = document.createElement('script');
 			cnzz.type = 'text/javascript';
-			cnzz.src = 'http://s22.cnzz.com/z_stat.php?id=1253404551&web_id=1253404551';
+			cnzz.src = 'http://s22.cnzz.com/z_stat.php?id=1254506275&web_id=1254506275';
 			(document.getElementsByTagName('body')[0]
 			||document.getElementsByTagName('head')[0]).appendChild(cnzz);
 		})();
@@ -792,7 +793,7 @@ if($dcount>0)
 		// 公共的函数
 		document.getElementById('submittext').focus();
 		startTime();
-		// cnzz();
+		cnzz();
 		dhsay();
 	};
 	</script>	
