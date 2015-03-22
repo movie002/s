@@ -1,4 +1,43 @@
 <?php
+///////////////////////////和x2y4的配置保持一致///////////////////////////////////
+//页面存储的深度
+$DH_page_store_deep = 3;
+//每个深度的页面个数
+$DH_page_store_count = 100;
+function output_page_path($basepath,$id) 
+{	
+	global $DH_page_store_deep,$DH_page_store_count;
+	$result=$basepath;
+	$useid = $id;
+	for($i= $DH_page_store_deep-1;$i>0;$i--)
+	{
+		$cut = pow($DH_page_store_count,$i);
+		$mod = floor($useid/$cut);
+		$result .= $mod .'/';
+		if (!file_exists($result))  
+		{   
+			mkdir($result,0777);
+		}
+		$useid = $useid%$cut;
+	}
+	$result .=$useid.'.html';
+	return $result;	
+}
+///////////////////////////和x2y4的配置保持一致///////////////////////////////////
+function dh_mysql_query($sql)
+{
+	$rs = mysql_query($sql);
+	$mysql_error = mysql_error();
+	if($mysql_error)
+	{
+		echo 'dh_mysql_query error info:'.$mysql_error.'</br>';
+		echo $sql;
+		return null;
+	}
+	return $rs;
+}
+////////////////////////////////////////////////////////////////
+
 function putsearchresult($sql,$DH_search_url_nopage)
 {
 	$DH_html_url="http://v.x2y4.com/html/";
@@ -19,7 +58,7 @@ function putsearchresult($sql,$DH_search_url_nopage)
 		{	
 			$page_path = output_page_path($DH_html_url,$row['pageid']);
 			$updatef = date("m-d",strtotime($row['updatetime']));
-			$lieach = '<li><span style="width: 90%;display:inline-block">[<a href="'.$DH_search_url_nopage.'&ca&a'.$row['cattype'].'" title="只显示 '.$movietype2[$row['cattype']].' 类别">'.$movietype[$row['cattype']].'</a>][<a href="'.$DH_search_url_nopage.'&cb&b'.$row['linkway'].'" title="只显示 '.$linkway2[$row['linkway']].' 类别">'.$linkway[$row['linkway']].'</a>][<a href="'.$DH_search_url_nopage.'&cc&c'.$row['linktype'].'" title="只显示 '.$linktype2[$row['linktype']].' 类别">'.$linktype[$row['linktype']].'</a>][<a href="'.$DH_search_url_nopage.'&d'.$row['linkquality'].'" title="只显示 '.$linkquality2[$row['linkquality']].' 类别">'.$linkquality[$row['linkquality']].'</a>] &nbsp;<a href="'.$row['link'].'" target="_blank" rel="nofollow" >'.$row['title'].'['.$row['author'].']</a></span><span class="rt45v2"><a href="'.$page_path.'">汇</a> </span> <span class="rt5v2" > '.$updatef.'</span></li>';
+			$lieach = '<li><span style="width: 90%;display:inline-block">[<a href="'.$DH_search_url_nopage.'&ca&a'.$row['cattype'].'" title="只显示 '.$movietype2[$row['cattype']].' 类别">'.$movietype[$row['cattype']].'</a>][<a href="'.$DH_search_url_nopage.'&cb&b'.$row['linkway'].'" title="只显示 '.$linkway2[$row['linkway']].' 类别">'.$linkway[$row['linkway']].'</a>][<a href="'.$DH_search_url_nopage.'&cc&c'.$row['linktype'].'" title="只显示 '.$linktype2[$row['linktype']].' 类别">'.$linktype[$row['linktype']].'</a>][<a href="'.$DH_search_url_nopage.'&d'.$row['linkquality'].'" title="只显示 '.$linkquality2[$row['linkquality']].' 类别">'.$linkquality[$row['linkquality']].'</a>] &nbsp;<a href="'.$row['link'].'" target="_blank" rel="nofollow" >'.$row['title'].'['.$row['author'].']</a></span><span class="rt45v2"><a href="'.$page_path.'" target="_blank">汇</a> </span> <span class="rt5v2" > '.$updatef.'</span></li>';
 			echo $lieach;
 		}
 	}                               
@@ -71,24 +110,24 @@ $p=1;
 //print_r($_COOKIE);
 //print_r($_SERVER);
 
-$GETPARAA=$_REQUEST;
-$GETPARAB=$_REQUEST;
-$GETPARAC=$_REQUEST;
-$GETPARAD=$_REQUEST;
+$GETPARAA=$_COOKIE;
+$GETPARAB=$_COOKIE;
+$GETPARAC=$_COOKIE;
+$GETPARAD=$_COOKIE;
 
-if( isset($_REQUEST['q']))
+if( isset($_GET['q']))
 {
-	$q = htmlspecialchars($_REQUEST['q']);
+	$q = htmlspecialchars($_GET['q']);
 	$active=$q;
 }
-if( isset($_REQUEST['aid']))
+if( isset($_GET['aid']))
 {
-	$aid = htmlspecialchars($_REQUEST['aid']);
+	$aid = htmlspecialchars($_GET['aid']);
 	$active='资源网站 '.$aid.' 的最新资源列表';
 }	
-if( isset($_REQUEST['p']))
+if( isset($_GET['p']))
 {
-	$p = $_REQUEST['p'];
+	$p = $_GET['p'];
 }	
 if( isset($_GET['ca']) || isset($_GET['g']))
 {
@@ -493,10 +532,7 @@ if($dcount>0)
                         }
                         else
 						{
-							//require("../php/config.php");
-							require("../php/common/base.php");
-							require("../php/common/dbaction.php");
-							require("../php/common/page_navi.php");
+							require("page_navi.php");
 							$conn=mysql_connect ($dbip, $dbuser, $dbpasswd) or die('数据库服务器连接失败：'.mysql_error());
 							mysql_select_db($dbname, $conn) or die('选择数据库失败');
 							mysql_query("set names utf8;");
@@ -505,7 +541,7 @@ if($dcount>0)
                             $DH_search_url="http://".$_SERVER['HTTP_HOST'].'/'.trim($_SERVER['REQUEST_URI'],"/");
                             $DH_search_url_nopage = preg_replace('/\&p\=[0-9]+/', '', $DH_search_url);
                             $DH_search_url =$DH_search_url_nopage."&p=";
-                            $DH_search_url_only="http://".$_SERVER['HTTP_HOST'].'/s.php?q='.$_REQUEST['q'];
+                            $DH_search_url_only="http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?q='.$_GET['q'];
                             //echo $DH_search_url; 
                             //$DH_search_url_nopage = "http://127.0.0.1/s/s.php?q=".$_REQUEST['q'];
                             //$DH_search_url = $DH_search_url_nopage."&p=";
@@ -552,7 +588,9 @@ if($dcount>0)
 							$sqldetail="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality,l.linktype,l.linkway,p.hot,p.catcountry,p.cattype ".$sql." order by l.updatetime desc limit ".$beginnum.",".$pagenum;
                             //echo $sqldetail;
 							$sqlcount ="select count(*) ".$sql;
-						    $count=dh_mysql_get_count($sqlcount);
+						    $results=dh_mysql_query($sqlcount);
+							$counts = mysql_fetch_array($results);
+							$count = $counts[0];
                             if($count==0)
                             {
                                 $errorsearch=1;
