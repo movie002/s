@@ -1,7 +1,7 @@
 <?php
 function putsearchresult($sql,$DH_search_url_nopage)
 {
-	$DH_html_url="http://x2y4.com/html/";
+	$DH_html_url="http://v.x2y4.com/html/";
     $movietype=array('未','影','视','综','动','记');
     $movietype2=array('','电影','电视','综艺','动画');
     $linkquality=array('未','抢','修','普','高','超','三','三');
@@ -27,7 +27,7 @@ function putsearchresult($sql,$DH_search_url_nopage)
 function putpageresult($sql)
 {
     $movietype=array('未知','电影','电视','综艺','动漫','记录片');
-	$DH_html_url="http://x2y4.com/html/";
+	$DH_html_url="http://v.x2y4.com/html/";
 	$results=dh_mysql_query($sql);
 	if($results)
 	{	
@@ -51,6 +51,13 @@ function dh_pagenum_link($link,$page)
 //{
 //	require_once('360safe/360webscan.php');
 //}
+
+$dbip='23.244.180.254';
+$dbuser='root';
+$dbpasswd='qazxsw';
+$dbname='movie002';
+
+date_default_timezone_set ('Asia/Shanghai');
 
 $active='';
 $count='';
@@ -486,7 +493,7 @@ if($dcount>0)
                         }
                         else
 						{
-							require("../php/config.php");
+							//require("../php/config.php");
 							require("../php/common/base.php");
 							require("../php/common/dbaction.php");
 							require("../php/common/page_navi.php");
