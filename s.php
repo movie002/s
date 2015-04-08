@@ -58,7 +58,7 @@ function putsearchresult($sql,$DH_search_url_nopage)
 		{	
 			$page_path = output_page_path($DH_html_url,$row['pageid']);
 			$updatef = date("m-d",strtotime($row['updatetime']));
-			$lieach = '<li><span style="width: 90%;display:inline-block">[<a href="'.$DH_search_url_nopage.'&ca&a'.$row['cattype'].'" title="只显示 '.$movietype2[$row['cattype']].' 类别">'.$movietype[$row['cattype']].'</a>][<a href="'.$DH_search_url_nopage.'&cb&b'.$row['linkway'].'" title="只显示 '.$linkway2[$row['linkway']].' 类别">'.$linkway[$row['linkway']].'</a>][<a href="'.$DH_search_url_nopage.'&cc&c'.$row['linktype'].'" title="只显示 '.$linktype2[$row['linktype']].' 类别">'.$linktype[$row['linktype']].'</a>][<a href="'.$DH_search_url_nopage.'&d'.$row['linkquality'].'" title="只显示 '.$linkquality2[$row['linkquality']].' 类别">'.$linkquality[$row['linkquality']].'</a>] &nbsp;<a href="'.$row['link'].'" target="_blank" rel="nofollow" >'.$row['title'].'['.$row['author'].']</a></span><span class="rt45v2"><a href="'.$page_path.'" target="_blank">汇</a> </span> <span class="rt5v2" > '.$updatef.'</span></li>';
+			$lieach = '<li><span style="width: 90%;display:inline-block">[<a href="'.$DH_search_url_nopage.'&ca&a'.$row['cattype'].'" title="只显示 '.$movietype2[$row['cattype']].' 类别">'.$movietype[$row['cattype']].'</a>][<a href="'.$DH_search_url_nopage.'&cb&b'.$row['linkway'].'" title="只显示 '.$linkway2[$row['linkway']].' 类别">'.$linkway[$row['linkway']].'</a>][<a href="'.$DH_search_url_nopage.'&cc&c'.$row['linktype'].'" title="只显示 '.$linktype2[$row['linktype']].' 类别">'.$linktype[$row['linktype']].'</a>][<a href="'.$DH_search_url_nopage.'&d'.$row['linkquality'].'" title="只显示 '.$linkquality2[$row['linkquality']].' 类别">'.$linkquality[$row['linkquality']].'</a>] &nbsp;<a href="'.$row['link'].'" target="_blank" rel="nofollow" >'.$row['title'].'['.$row['author'].']</a> <a href="'.$page_path.'" target="_blank">资源汇总>></a></span> <span class="rt5v2" > '.$updatef.'</span></li>';
 			echo $lieach;
 		}
 	}                               
@@ -91,7 +91,7 @@ function dh_pagenum_link($link,$page)
 //	require_once('360safe/360webscan.php');
 //}
 
-$dbip='23.244.180.254';
+$dbip='127.0.0.1';
 $dbuser='root';
 $dbpasswd='qazxsw';
 $dbname='movie002';
