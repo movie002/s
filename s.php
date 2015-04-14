@@ -150,7 +150,7 @@ if( isset($_GET['cd']) || isset($_GET['g']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title><?php echo $q ?>的搜索结果-影粉搜搜</title>
+    <title>"<?php echo $q ?>"的搜索结果-影粉搜搜</title>
 	<meta name="keywords" content="影粉搜搜网中包含 <?php echo $q ?> 搜索结果" />
 	<meta name="description" content="影粉搜搜网中包含 <?php echo $q ?> 的搜索结果的展示" />
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
