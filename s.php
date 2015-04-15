@@ -150,9 +150,9 @@ if( isset($_GET['cd']) || isset($_GET['g']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>"<?php echo $q ?>"的搜索结果-影粉搜搜</title>
-	<meta name="keywords" content="影粉搜搜网中包含 <?php echo $q ?> 搜索结果" />
-	<meta name="description" content="影粉搜搜网中包含 <?php echo $q ?> 的搜索结果的展示" />
+    <title>"<?php echo $active ?>"的搜索结果-影粉搜搜</title>
+	<meta name="keywords" content="影粉搜搜网中包含 <?php echo $active ?> 搜索结果" />
+	<meta name="description" content="影粉搜搜网中包含 <?php echo $active ?> 的搜索结果的展示" />
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="Content-Language" content="zh-CN"/>
@@ -520,7 +520,7 @@ if($dcount>0)
 	</div>
         <?php
                         //echo $q."ddddd:".strlen($q).";sizeof q:".sizeof($q);
-						if($q==''&&$active='')
+						if($active='')
 						{
               $errorsearch=1;
 							$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以没有哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
@@ -584,9 +584,9 @@ if($dcount>0)
 							{
 								$sql .=" and ".$sqllinkquality;
 							}
-                            $beginnum=($p-1)*$pagenum;
+              $beginnum=($p-1)*$pagenum;
 							$sqldetail="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality,l.linktype,l.linkway,p.hot,p.catcountry,p.cattype ".$sql." order by l.updatetime desc limit ".$beginnum.",".$pagenum;
-                            //echo $sqldetail;
+              //echo $sqldetail;
 							$sqlcount ="select count(*) ".$sql;
 						    $results=dh_mysql_query($sqlcount);
 							$counts = mysql_fetch_array($results);
