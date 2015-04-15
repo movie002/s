@@ -520,31 +520,31 @@ if($dcount>0)
 	</div>
         <?php
                         //echo $q."ddddd:".strlen($q).";sizeof q:".sizeof($q);
-						if($q=='')
+						if($q==''&&$active='')
 						{
-                            $errorsearch=1;
+              $errorsearch=1;
 							$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以没有哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
 						}
 						else if(strlen($q) > 50)
-                        {
-                            $errorsearch=1;
+            {
+              $errorsearch=1;
 							$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以太长哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
-                        }
-                        else
+            }
+            else
 						{
 							require("page_navi.php");
 							$conn=mysql_connect ($dbip, $dbuser, $dbpasswd) or die('数据库服务器连接失败：'.mysql_error());
 							mysql_select_db($dbname, $conn) or die('选择数据库失败');
 							mysql_query("set names utf8;");
                             
-                            $pagenum=30;
-                            $DH_search_url="http://".$_SERVER['HTTP_HOST'].'/'.trim($_SERVER['REQUEST_URI'],"/");
-                            $DH_search_url_nopage = preg_replace('/\&p\=[0-9]+/', '', $DH_search_url);
-                            $DH_search_url =$DH_search_url_nopage."&p=";
-                            $DH_search_url_only="http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?q='.$_GET['q'];
-                            //echo $DH_search_url; 
-                            //$DH_search_url_nopage = "http://127.0.0.1/s/s.php?q=".$_REQUEST['q'];
-                            //$DH_search_url = $DH_search_url_nopage."&p=";
+              $pagenum=30;
+              $DH_search_url="http://".$_SERVER['HTTP_HOST'].'/'.trim($_SERVER['REQUEST_URI'],"/");
+              $DH_search_url_nopage = preg_replace('/\&p\=[0-9]+/', '', $DH_search_url);
+              $DH_search_url =$DH_search_url_nopage."&p=";
+              $DH_search_url_only="http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?q='.$_GET['q'];
+              //echo $DH_search_url; 
+              //$DH_search_url_nopage = "http://127.0.0.1/s/s.php?q=".$_REQUEST['q'];
+              //$DH_search_url = $DH_search_url_nopage."&p=";
 							
 							//if($aid!='')
 							//	$sql="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality ,l.linkway,p.hot,p.catcountry,p.cattype from link l,page p where l.pageid=p.id and l.author like '$aid' order by l.updatetime desc limit 0,60";
