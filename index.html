@@ -93,34 +93,9 @@
 		//alert(style_need);
 		document.write(style_need);
 	}
-    DelCookie('a1');
-    DelCookie('a2');
-    DelCookie('a3');
-    DelCookie('a4');
-    DelCookie('a5');
-    DelCookie('b1');
-    DelCookie('b2');
-    DelCookie('b3');
-    DelCookie('b4');
-    DelCookie('b5');
-    DelCookie('b6');
-    DelCookie('b7');
-    DelCookie('c1');
-    DelCookie('c2');
-    DelCookie('c3');
-    DelCookie('c4');
-    DelCookie('c5');
-    DelCookie('c6');
-    DelCookie('c7');
-    DelCookie('c8');
-    DelCookie('d1');
-    DelCookie('d2');
-    DelCookie('d3');
-    DelCookie('d4');
-    DelCookie('d5');
 	</script>
 </head>
-<body style="height:100%">
+<body style="height:100%;min-height:500px">
 	<div id="wrapper" class="width_1" style="height:100%;position:relative;">
 		<div id="header">
 			<div id="service_list">
@@ -150,8 +125,10 @@
 			</div>
 			<div id="global_nav">
 				<div id="global_nav_inner" class="width_1">
-					<span style="margin:10px;float:left;font-size:16px">专注影视资源搜索</span>
-					<span style="height:20px;float:right;margin:15px 0 0 0;width:800px" id="iframe_say_span"></span>
+					<span style="margin:10px;float:left;font-size:16px;color:#B83838">专注影视资源搜索</span>
+          <span style="position:absolute;right:15px;top:10px">&nbsp;
+				    <div class="bdsharebuttonbox" style="position:relative;left:10px;top:-28px"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div>
+					</span>
 				</div>					
 			</div>
 	<!-- header-inner -->			
@@ -159,6 +136,10 @@
 		<!-- header -->
 		<div id="middle">
 			<div>
+				<div class="top_content" style="position:relative;margin:10px 10px">
+					<img width="24px" height="24px" style="border:none" src="./images/audio.png"/>&nbsp;
+					<span id="iframe_say"></span>
+				</div>
 				<script type="text/javascript">
 					function a()  
 					{   
@@ -184,6 +165,46 @@
 						</div>
 					</form>
 				</div>
+        <div class="f12px" style="width:400px;margin:10px auto;text-align:left">
+              <b>高级过滤条件：</b>
+					    <div class="ac"> 影视类型：
+                   <a id="a"  onclick="changealltype('a',5)">全部</a>
+                   <a id="a1" onclick="changetype('a1','a')">电影</a>
+                   <a id="a2" onclick="changetype('a2','a')">电视</a>
+                   <a id="a3" onclick="changetype('a3','a')">综艺</a>
+                   <a id="a4" onclick="changetype('a4','a')">动画</a>
+                   <a id="a5" onclick="changetype('a5','a')">纪录</a>
+               </div>
+					    <div class="ac">资源类型：
+                   <a id="b"  onclick="changealltype('b',7)">全部</a>
+                   <a id="b1" onclick="changetype('b1','b')">影讯</a>
+                   <a id="b2" onclick="changetype('b2','b')">影评</a>
+                   <a id="b3" onclick="changetype('b3','b')">预告</a>
+                   <a id="b4" onclick="changetype('b4','b')">活动</a>
+                   <a id="b5" onclick="changetype('b5','b')">购票</a>
+                   <a id="b6" onclick="changetype('b6','b')">下载</a>
+                   <a id="b7" onclick="changetype('b7','b')">在线</a>
+               </div>
+					    <div class="ac">资源形式：
+				           <a id="c"  onclick="changealltype('c',8)">全部</a> 
+				           <a id="c1" onclick="changetype('c1','c')">迅雷</a> 
+			             <a id="c4" onclick="changetype('c4','c')">磁力</a>
+				           <a id="c5" onclick="changetype('c5','c')">电驴</a>
+			             <a id="c6" onclick="changetype('c6','c')">网盘</a>
+				           <a id="c7" onclick="changetype('c7','c')">在线</a>
+				           <a id="c8" onclick="changetype('c8','c')">综合</a>
+				           <a id="c2" onclick="changetype('c2','c')">FTP</a>
+				           <a id="c3" onclick="changetype('c3','c')">BT </a>
+              </div>
+					    <div class="ac">资源质量：
+					         <a id="d"  onclick="changealltype('d',5)">全部</a>
+					         <a id="d1" onclick="changetype('d1','d')">抢先</a>
+					         <a id="d2" onclick="changetype('d2','d')">修正</a>
+					         <a id="d3" onclick="changetype('d3','d')">普清</a>
+					         <a id="d4" onclick="changetype('d4','d')">高清</a>
+					         <a id="d5" onclick="changetype('d5','d')">超清</a>
+              </div>
+        </div>
 				<ul class="f12px">
 				</ul>
 			</div>
@@ -199,7 +220,7 @@
 				<a href="/about/talk.html">留言反馈</a> | 
 				<a href="/about/mianze.html">免责声明</a> | 
 				<a href="javascript:void(0);" onclick="AddFavorite('影粉搜搜','http://yfsoso.com')">收藏本站</a> |
-				<a href="http://new.cnzz.com/v1/login.php?siteid=1254506275" rel="nofollow" target="_blank">CNZZ</a>
+        <span id="cnzz_stat_icon_1254506275"></span>
 			</div>
 			<div class="cpright colorlittle">
 			© 2015 - 2018 &nbsp;<a href="http://s.yfsoso.com" title="电影大全,电视剧大全">影粉搜搜网</a> &nbsp;All Rights Reserved <a href="http://www.miibeian.gov.cn" target="_blank">免备案</a>
@@ -211,6 +232,78 @@
 	</div>
 	<!-- wrapper -->
 	<script type="text/javascript">
+    function gettypeall()
+    {
+        getalltype('a',5);
+        getalltype('b',7);
+        getalltype('c',8);
+        getalltype('d',5);
+    };
+    function getalltype(id,num)
+    {
+        for(var i=1;i<=num;i++)
+        {
+            var eachid = id+i;     
+            var idvar =  document.getElementById(eachid);
+            var idcookie = getCookie(eachid);
+            if(idcookie!=null)
+            {
+              idvar.style.color="#a01200";
+              idvar.style.border="1px solid #a01200";
+            }
+            else
+            {
+              idvar.style.color="";
+              idvar.style.border="";
+            }
+        }
+    };
+    function changeall()
+    {
+        changealltype('a',5);
+        changealltype('b',7);
+        changealltype('c',8);
+        changealltype('d',5);
+    };
+    function changealltype(id,num)
+    {
+        for(var i=1;i<=num;i++)
+        {
+            var changenoneid = id+i;     
+            changetypenone(changenoneid);
+        }
+        var idvar =  document.getElementById(id);
+        idvar.style.color="#a01200";
+        idvar.style.border="1px solid #a01200";
+    };
+    function changetypenone(id)
+    {
+        var idvar =  document.getElementById(id);
+        DelCookie(id);
+        idvar.style.color='';
+        idvar.style.border='';
+    };
+    function changetype(id,id2)
+    {
+        var idvar =  document.getElementById(id);
+        var idcookie = getCookie(id);
+        if(idcookie!=null)
+        {
+            DelCookie(id);
+            idvar.style.color='';
+            idvar.style.border='';
+        }
+        else
+        {
+            SetCookie(id,'');
+            idvar.style.color="#a01200";
+            idvar.style.border="1px solid #a01200";
+            var idvar =  document.getElementById(id2);
+            idvar.style.color='';
+            idvar.style.border='';
+        }
+    };
+
 	function startTime()
 	{
 		var today=new Date();
@@ -223,11 +316,14 @@
 		document.getElementById('txt').innerHTML=h+":"+m+":"+s;
 		t=setTimeout('startTime()',500);
 	};
+
 	function checkTime(i)
 	{
 		if (i<10) 
-		  {i="0" + i;}
-		  return i;
+		{
+      i="0" + i;
+    }
+		return i;
 	};
 			                     
 	//收藏本站
@@ -245,17 +341,6 @@
 	    }
 	};
 
-	function cnzz()
-	{
-		(function() {
-			var cnzz = document.createElement('script');
-			cnzz.type = 'text/javascript';
-			cnzz.src = 'http://s22.cnzz.com/z_stat.php?id=1254506275&web_id=1254506275';
-			(document.getElementsByTagName('body')[0]
-			||document.getElementsByTagName('head')[0]).appendChild(cnzz);
-		})();
-	};
-
 	window.onscroll = function()
 	{
 		var h =document.body.scrollTop;
@@ -271,20 +356,23 @@
 			top.style.display = 'none';
 		}
 	};
-    function dhsay()
-    {
-    	//延时调用 dh_say.php 节省时间
-    	var iframe_say = document.getElementById('iframe_say_span');
-    	iframe_say.innerHTML = '<iframe id="iframe_say" allowtransparency="true" width="90%" height="16px" style="float:right" src="http://yfsoso.com/dh_say.php" frameBorder="0" scrolling="no" ></iframe>';
-    };
+  function dhsay()
+  {
+  	//延时调用 dh_say.php 节省时间
+   var iframe_say = document.getElementById('iframe_say');
+   iframe_say.innerHTML = '<iframe id="iframe_say" allowtransparency="true" width="95%" height="16px" src="http://yfsoso.com/dh_say.php" frameBorder="0" scrolling="no" ></iframe>';
+  };
 	window.onload = function ()
 	{
 		// 公共的函数
 		document.getElementById('submittext').focus();
+    gettypeall();
 		startTime();
-		cnzz();
 		dhsay();
+    //百度分享
+	  window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 	};
 	</script>	
+  <script src="http://s95.cnzz.com/z_stat.php?id=1254506275" language="JavaScript"></script> 
 </body>
 </html>

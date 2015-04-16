@@ -13,7 +13,7 @@ html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,
     margin:5px 5px 5px 0
 }
 
-.tc
+.tc a
 {
     border:1px solid #ddd;
     padding:1px;
@@ -23,11 +23,31 @@ html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,
     float:left;
     display:block;
 }
-.tc:hover
+.tc a:hover
 {
     border:1px solid #F60;
     color:#F60;
     text-decoration: none;
+}
+
+.ac
+{
+	margin:5px 0;
+}
+
+.ac a
+{
+    border:1px solid #ddd;
+    padding:3px 2px;
+    color:#000;
+    cursor: pointer;
+    margin:1px;
+    text-decoration: none;	
+}
+.ac a:hover
+{
+    border:1px solid #F60;
+    color:#F60;
 }
 .cred
 {

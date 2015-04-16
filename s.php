@@ -53,7 +53,7 @@ function putsearchresult($sql,$DH_search_url_nopage)
     //echo $sql;
 	if($results)
 	{	
-		$liout='';
+		echo '<li style="color:#a01200"><span style="width: 90%;display:inline-block">资源类别分类信息 &nbsp;&nbsp;原链接</span><span class="rt5v2">日期&nbsp;</span></li>';
 		while($row = mysql_fetch_array($results))
 		{	
 			$page_path = output_page_path($DH_html_url,$row['pageid']);
@@ -150,9 +150,9 @@ if( isset($_GET['cd']) || isset($_GET['g']))
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>"<?php echo $q ?>"的搜索结果-影粉搜搜</title>
-	<meta name="keywords" content="影粉搜搜网中包含 <?php echo $q ?> 搜索结果" />
-	<meta name="description" content="影粉搜搜网中包含 <?php echo $q ?> 的搜索结果的展示" />
+    <title>"<?php echo $active ?>"的搜索结果-影粉搜搜</title>
+	<meta name="keywords" content="影粉搜搜网中包含 <?php echo $active ?> 搜索结果" />
+	<meta name="description" content="影粉搜搜网中包含 <?php echo $active ?> 的搜索结果的展示" />
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="Content-Language" content="zh-CN"/>
@@ -513,19 +513,21 @@ if($dcount>0)
 								<input type="submit" class="searchsubmit" value="搜索" />
 						</form>			
 					</span>	
-					<span style="height:20px;float:right;margin:15px 0 0 0;width:800px" id="iframe_say_span"></span>
+          <span style="position:absolute;right:15px;top:10px">&nbsp;
+				    <div class="bdsharebuttonbox" style="position:relative;left:10px;top:-28px"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享"></a></div>
+					</span>
 				</div>					
 			</div>
 	<!-- header-inner -->			
 	</div>
         <?php
                         //echo $q."ddddd:".strlen($q).";sizeof q:".sizeof($q);
-						if($q=''&&$aid='')
+						if($q==''&&$aid=='')
 						{
               $errorsearch=1;
 							$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以没有哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
 						}
-						else if(strlen($q) > 50)
+						else if(strlen($q) > 25)
             {
               $errorsearch=1;
 							$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以太长哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
@@ -541,7 +543,7 @@ if($dcount>0)
               $DH_search_url="http://".$_SERVER['HTTP_HOST'].'/'.trim($_SERVER['REQUEST_URI'],"/");
               $DH_search_url_nopage = preg_replace('/\&p\=[0-9]+/', '', $DH_search_url);
               $DH_search_url =$DH_search_url_nopage."&p=";
-              $DH_search_url_only="http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?q='.$_GET['q'];
+              $DH_search_url_only="http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?q='.$q.'&aid='.$aid;
               //echo $DH_search_url; 
               //$DH_search_url_nopage = "http://127.0.0.1/s/s.php?q=".$_REQUEST['q'];
               //$DH_search_url = $DH_search_url_nopage."&p=";
@@ -554,15 +556,15 @@ if($dcount>0)
 							
 							if($q!='')
 							{
-                                //处理空格
-                                $qs=preg_split("/[\s]+/s",$q);	
-                                //print_r($qs);
-                                $sql.=" and ( true ";
-                                foreach ($qs as $key=>$eachq)
-                                {
+                  //处理空格
+                  $qs=preg_split("/[\s]+/s",$q);	
+                  //print_r($qs);
+                  $sql.=" and ( true ";
+                  foreach ($qs as $key=>$eachq)
+                  {
 								    $sql .=" and l.title like '%$eachq%' ";				
-                                }
-                                $sql.=" )";
+                  }
+                  $sql.=" )";
 							}
 							if($aid!='')
 							{
@@ -591,18 +593,22 @@ if($dcount>0)
 						    $results=dh_mysql_query($sqlcount);
 							$counts = mysql_fetch_array($results);
 							$count = $counts[0];
-                            if($count==0)
-                            {
-                                $errorsearch=1;
+              if($count==0)
+              {
+                $errorsearch=1;
 								$errormsg =  "</br>".'  <div style="text-align:center">好像没有相关资源哦！请更换关键词重新搜索，或者耐心等待，只要不断关注影粉搜搜网，就会第一时间得到资源，您不会失望哦！</div>'."</br>";
-                            }
+              }
 						}
             
         ?>
 		<!-- header -->
 		<div id="middle" class="width_2" style="min-height:600px;_height:600px;">
+			<div class="top_content" style="position:relative;margin:0 5px 10px 0px">
+				<img width="24px" height="24px" style="border:none" src="./images/audio.png"/>&nbsp;
+				<span id="iframe_say"></span>
+			</div>			
 			<div id="title">
-				<div style="border-bottom:1px solid #ccc;padding:0 0 10px 5px;font-weight:500">以下是 <span class="cred">"<?php echo $q ?>"</span> 的搜索结果：一共 <?php echo $count ?> 条记录</div>
+				<div style="border-bottom:1px solid #ccc;padding:0 0 5px 5px;font-weight:500">以下是 <span class="cred">"<?php echo $active ?>"</span> 的搜索结果：一共 <?php echo $count ?> 条记录</div>
 			</div>
 			<div id="sidebar">
 				<div>
@@ -640,46 +646,46 @@ if($dcount>0)
 				    点击选择，再点取消，重新搜索</br> 	
                     <div class="searchfilter"><span class="searchsubmit" style="padding:5px;cursor:pointer" onclick="changeall()">取消过滤</span> <a class="searchsubmit" style="padding:5px" href="<?php echo $DH_search_url_only?>">过滤结果</a></div>
                     <b>影视类型：</b></br>
-					    <div class="lifloat">
-                         <a id="a" class="tc" style="<?= $a ?>" onclick="changealltype('a',5)">全部</a>
-                         <a id="a1" class="tc" style="<?= $a1 ?>" onclick="changetype('a1','a')">电影</a>
-                         <a id="a2" class="tc" style="<?= $a2 ?>" onclick="changetype('a2','a')">电视</a>
-                         <a id="a3" class="tc" style="<?= $a3 ?>" onclick="changetype('a3','a')">综艺</a>
-                         <a id="a4" class="tc" style="<?= $a4 ?>" onclick="changetype('a4','a')">动画</a>
-                         <a id="a5" class="tc" style="<?= $a5 ?>" onclick="changetype('a5','a')">纪录</a>
-                        </div>
-                    <b>资源种类：</b></br>
-					    <div class="lifloat">
-                         <a id="b" class="tc" style="<?= $b ?>" onclick="changealltype('b',7)">全部</a>
-                         <a id="b1" class="tc" style="<?= $b1 ?>" onclick="changetype('b1','b')">影讯</a>
-                         <a id="b2" class="tc" style="<?= $b2 ?>" onclick="changetype('b2','b')">影评</a>
-                         <a id="b3" class="tc" style="<?= $b3 ?>" onclick="changetype('b3','b')">预告</a>
-                         <a id="b4" class="tc" style="<?= $b4 ?>" onclick="changetype('b4','b')">活动</a>
-                         <a id="b5" class="tc" style="<?= $b5 ?>" onclick="changetype('b5','b')">购票</a>
-                         <a id="b6" class="tc" style="<?= $b6 ?>" onclick="changetype('b6','b')">下载</a>
-                         <a id="b7" class="tc" style="<?= $b7 ?>" onclick="changetype('b7','b')">在线</a>
-                        </div>
-                    <b>获取方式：</b></br>
-					    <div class="lifloat">
-				         <a id="c"  class="tc"style="<?= $c ?>" onclick="changealltype('c',8)">全部资源</a> 
-				         <a id="c1" class="tc" style="<?= $c1 ?>" onclick="changetype('c1','c')">迅雷资源</a> 
-				         <a id="c2" class="tc" style="<?= $c2 ?>" onclick="changetype('c2','c')">FTP 资源</a>
-				         <a id="c3" class="tc" style="<?= $c3 ?>" onclick="changetype('c3','c')">B T 资源</a>
-			             <a id="c4" class="tc" style="<?= $c4 ?>" onclick="changetype('c4','c')">磁力链接</a>
-				         <a id="c5" class="tc" style="<?= $c5 ?>" onclick="changetype('c5','c')">电驴资源</a>
-			             <a id="c6" class="tc" style="<?= $c6 ?>" onclick="changetype('c6','c')">网盘资源</a>
-				         <a id="c7" class="tc" style="<?= $c7 ?>" onclick="changetype('c7','c')">网页在线</a>
-				         <a id="c8" class="tc" style="<?= $c8 ?>" onclick="changetype('c8','c')">综合资源</a>
-                        </div>
-                    <b>清晰度：</b></br>
-					    <div class="lifloat">
-					     <a id="d" class="tc" style="<?= $d ?>" onclick="changealltype('d',5)">全部</a>
-					     <a id="d1" class="tc" style="<?= $d1 ?>" onclick="changetype('d1','d')">抢先</a>
-					     <a id="d2" class="tc" style="<?= $d2 ?>" onclick="changetype('d2','d')">修正</a>
-					     <a id="d3" class="tc" style="<?= $d3 ?>" onclick="changetype('d3','d')">普清</a>
-					     <a id="d4" class="tc" style="<?= $d4 ?>" onclick="changetype('d4','d')">高清</a>
-					     <a id="d5" class="tc" style="<?= $d5 ?>" onclick="changetype('d5','d')">超清</a>
-                        </div>
+					    <div class="lifloat tc">
+                <a id="a"  onclick="changealltype('a',5)">全部</a>
+                <a id="a1" onclick="changetype('a1','a')">电影</a>
+                <a id="a2" onclick="changetype('a2','a')">电视</a>
+                <a id="a3" onclick="changetype('a3','a')">综艺</a>
+                <a id="a4" onclick="changetype('a4','a')">动画</a>
+                <a id="a5" onclick="changetype('a5','a')">纪录</a>
+              </div>
+                    <b>资源类型：</b></br>
+					    <div class="lifloat tc">
+                <a id="b"  onclick="changealltype('b',7)">全部</a>
+                <a id="b1" onclick="changetype('b1','b')">影讯</a>
+                <a id="b2" onclick="changetype('b2','b')">影评</a>
+                <a id="b3" onclick="changetype('b3','b')">预告</a>
+                <a id="b4" onclick="changetype('b4','b')">活动</a>
+                <a id="b5" onclick="changetype('b5','b')">购票</a>
+                <a id="b6" onclick="changetype('b6','b')">下载</a>
+                <a id="b7" onclick="changetype('b7','b')">在线</a>
+              </div>
+                    <b>资源形式：</b></br>
+					    <div class="lifloat tc">
+				        <a id="c"  onclick="changealltype('c',8)">全部</a> 
+				        <a id="c1" onclick="changetype('c1','c')">迅雷</a> 
+			          <a id="c4" onclick="changetype('c4','c')">磁力</a>
+				        <a id="c5" onclick="changetype('c5','c')">电驴</a>
+			          <a id="c6" onclick="changetype('c6','c')">网盘</a>
+				        <a id="c7" onclick="changetype('c7','c')">网页</a>
+				        <a id="c8" onclick="changetype('c8','c')">综合</a>
+				        <a id="c2" onclick="changetype('c2','c')">FTP </a>
+				        <a id="c3" onclick="changetype('c3','c')">B T </a>
+              </div>
+                    <b>资源质量：</b></br>
+					    <div class="lifloat tc">
+					     <a id="d"  onclick="changealltype('d',5)">全部</a>
+					     <a id="d1" onclick="changetype('d1','d')">抢先</a>
+					     <a id="d2" onclick="changetype('d2','d')">修正</a>
+					     <a id="d3" onclick="changetype('d3','d')">普清</a>
+					     <a id="d4" onclick="changetype('d4','d')">高清</a>
+					     <a id="d5" onclick="changetype('d5','d')">超清</a>
+             </div>
                 </div>
 			</div>			
 			<div id="content"  class="width_3 listcontent">
@@ -709,7 +715,7 @@ if($dcount>0)
 				<a href="/about/talk.html">留言反馈</a> | 
 				<a href="/about/mianze.html">免责声明</a> | 
 				<a href="javascript:void(0);" onclick="AddFavorite('影粉搜搜','http://yfsoso.com')">收藏本站</a> |
-				<a href="http://new.cnzz.com/v1/login.php?siteid=1254506275" rel="nofollow" target="_blank">CNZZ</a>
+        <span id="cnzz_stat_icon_1254506275"></span>
 			</div>
 			<div class="cpright colorlittle">
 			© 2015 - 2018 &nbsp;<a href="http://s.yfsoso.com" title="电影大全,电视剧大全">影粉搜搜网</a> &nbsp;All Rights Reserved <a href="http://www.miibeian.gov.cn" target="_blank">免备案</a>
@@ -720,6 +726,32 @@ if($dcount>0)
 	</div>
 	<!-- wrapper -->
 	<script type="text/javascript">
+    function gettypeall()
+    {
+        getalltype('a',5);
+        getalltype('b',7);
+        getalltype('c',8);
+        getalltype('d',5);
+    };
+    function getalltype(id,num)
+    {
+        for(var i=1;i<=num;i++)
+        {
+            var eachid = id+i;     
+            var idvar =  document.getElementById(eachid);
+            var idcookie = getCookie(eachid);
+            if(idcookie!=null)
+            {
+              idvar.style.color="#a01200";
+              idvar.style.border="1px solid #a01200";
+            }
+            else
+            {
+              idvar.style.color="";
+              idvar.style.border="";
+            }
+        }
+    };
     function changeall()
     {
         changealltype('a',5);
@@ -828,17 +860,20 @@ if($dcount>0)
     function dhsay()
     {
     	//延时调用 dh_say.php 节省时间
-    	var iframe_say = document.getElementById('iframe_say_span');
-    	iframe_say.innerHTML = '<iframe id="iframe_say" allowtransparency="true" width="90%" height="16px" style="float:right" src="http://yfsoso.com/dh_say.php" frameBorder="0" scrolling="no" ></iframe>';
+    	var iframe_say = document.getElementById('iframe_say');
+    	iframe_say.innerHTML = '<iframe id="iframe_say" allowtransparency="true" width="95%" height="16px" src="http://yfsoso.com/dh_say.php" frameBorder="0" scrolling="no" ></iframe>';
     };
 	window.onload = function ()
 	{
 		// 公共的函数
 		document.getElementById('submittext').focus();
+    gettypeall();
 		startTime();
-		cnzz();
 		dhsay();
+    //百度分享
+	  window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 	};
 	</script>	
+  <script src="http://s95.cnzz.com/z_stat.php?id=1254506275" language="JavaScript"></script> 
 </body>
 </html>
