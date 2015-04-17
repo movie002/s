@@ -53,12 +53,12 @@ function putsearchresult($sql,$DH_search_url_nopage)
     //echo $sql;
 	if($results)
 	{	
-		echo '<li style="color:#a01200"><span style="width: 90%;display:inline-block">资源类别分类信息 &nbsp;&nbsp;原链接</span><span class="rt5v2">日期&nbsp;</span></li>';
+		echo '<li style="color:#a01200"><span style="width: 90%;display:inline-block">影视类型形式质量&nbsp;&nbsp;原链接</span><span class="rt5v2">日期&nbsp;</span></li>';
 		while($row = mysql_fetch_array($results))
 		{	
 			$page_path = output_page_path($DH_html_url,$row['pageid']);
 			$updatef = date("m-d",strtotime($row['updatetime']));
-			$lieach = '<li><span style="width: 90%;display:inline-block">[<a href="'.$DH_search_url_nopage.'&ca&a'.$row['cattype'].'" title="只显示 '.$movietype2[$row['cattype']].' 类别">'.$movietype[$row['cattype']].'</a>][<a href="'.$DH_search_url_nopage.'&cb&b'.$row['linkway'].'" title="只显示 '.$linkway2[$row['linkway']].' 类别">'.$linkway[$row['linkway']].'</a>][<a href="'.$DH_search_url_nopage.'&cc&c'.$row['linktype'].'" title="只显示 '.$linktype2[$row['linktype']].' 类别">'.$linktype[$row['linktype']].'</a>][<a href="'.$DH_search_url_nopage.'&d'.$row['linkquality'].'" title="只显示 '.$linkquality2[$row['linkquality']].' 类别">'.$linkquality[$row['linkquality']].'</a>] &nbsp;<a href="'.$row['link'].'" target="_blank" rel="nofollow" >'.$row['title'].'['.$row['author'].']</a> <a href="'.$page_path.'" target="_blank">资源汇总>></a></span> <span class="rt5v2" > '.$updatef.'</span></li>';
+			$lieach = '<li><span style="width: 90%;display:inline-block">[<a href="#" onclick="cookiegoto(\'a\',\'a'.$row['cattype'].'\',\''.$DH_search_url_nopage.'\')" title="点击只显示 '.$movietype2[$row['cattype']].' 类别">'.$movietype[$row['cattype']].'</a>][<a href="#" onclick="cookiegoto(\'b\',\'b'.$row['linkway'].'\',\''.$DH_search_url_nopage.'\')" title="只显示 '.$linkway2[$row['linkway']].' 类别">'.$linkway[$row['linkway']].'</a>][<a href="#" onclick="cookiegoto(\'c\',\'c'.$row['linktype'].'\',\''.$DH_search_url_nopage.'\')" title="只显示 '.$linktype2[$row['linktype']].' 类别">'.$linktype[$row['linktype']].'</a>][<a href="#" onclick="cookiegoto(\'c\',\'c'.$row['linkquality'].'\',\''.$DH_search_url_nopage.'\')" title="只显示 '.$linkquality2[$row['linkquality']].' 类别">'.$linkquality[$row['linkquality']].'</a>] &nbsp;<a href="'.$row['link'].'" target="_blank" rel="nofollow" >'.$row['title'].'['.$row['author'].']</a> <a href="'.$page_path.'" target="_blank">资源汇总>></a></span> <span class="rt5v2" > '.$updatef.'</span></li>';
 			echo $lieach;
 		}
 	}                               
@@ -128,22 +128,6 @@ if( isset($_GET['aid']))
 if( isset($_GET['p']))
 {
 	$p = $_GET['p'];
-}	
-if( isset($_GET['ca']) || isset($_GET['g']))
-{
-    $GETPARAA=$_GET;
-}	
-if( isset($_GET['cb']) || isset($_GET['g']))
-{
-    $GETPARAB=$_GET;
-}	
-if( isset($_GET['cc']) || isset($_GET['g']))
-{
-    $GETPARAC=$_GET;
-}	
-if( isset($_GET['cd']) || isset($_GET['g']))
-{
-    $GETPARAD=$_GET;
 }	
 ?>
 
@@ -244,49 +228,33 @@ if( isset($_GET['cd']) || isset($_GET['g']))
 
 <?php
 
-$redcolor="#a01200";
-$sred="color:#a01200;border:1px solid #a01200";
-$redborder="1px solid #a01200";
-
 $sqlmovietype='';
 $acount=0;
-$a=$sred;
-$a1=""; $a2=""; $a3=""; $a4=""; $a5="";
 $requesttmp='';
 if(isset($GETPARAA['a1']))
 {
     $acount++;
-    $a1=$sred;
 	$requesttmp .= '1,';
-    echo "        SetCookie('a1','');";
 }
 if(isset($GETPARAA['a2']))
 {
     $acount++;
-    $a2=$sred;
-	$requesttmp .="2,";
-    echo "        SetCookie('a2','');";
+  	$requesttmp .="2,";
 }
 if(isset($GETPARAA['a3']))
 {
     $acount++;
-    $a3=$sred;
 	$requesttmp .="3,";
-    echo "        SetCookie('a3','');";
 }
 if(isset($GETPARAA['a4']))
 {
     $acount++;
-    $a4=$sred;
 	$requesttmp .="4,";
-    echo "        SetCookie('a4','');";
 }
 if(isset($GETPARAA['a5']))
 {
     $acount++;
-    $a5=$sred;
 	$requesttmp .="5,";
-    echo "        SetCookie('a5','');";
 }
 if($acount>0)
 {
@@ -296,57 +264,41 @@ if($acount>0)
 
 $sqllinkway='';
 $bcount=0;
-$b=$sred;
-$b1=""; $b2=""; $b3=""; $b4=""; $b5=""; $b6="";$b7="";
 $requesttmp="";
 if(isset($GETPARAB['b1']))
 {
     $bcount++;
-    $b1=$sred;
 	$requesttmp .= '1,';
-    echo "        SetCookie('b1','');";
 }
 if(isset($GETPARAB['b2']))
 {
     $bcount++;
-    $b2=$sred;
 	$requesttmp .="2,";
-    echo "        SetCookie('b2','');";
 }
 if(isset($GETPARAB['b3']))
 {
     $bcount++;
-    $b3=$sred;
 	$requesttmp .="3,";
-    echo "        SetCookie('b3','');";
 }
 if(isset($GETPARAB['b4']))
 {
     $bcount++;
-    $b4=$sred;
 	$requesttmp .="4,";
-    echo "        SetCookie('b4','');";
 }
 if(isset($GETPARAB['b5']))
 {
     $bcount++;
-    $b5=$sred;
 	$requesttmp .="5,";
-    echo "        SetCookie('b5','');";
 }
 if(isset($GETPARAB['b6']))
 {
     $bcount++;
-    $b6=$sred;
 	$requesttmp .="6,";
-    echo "        SetCookie('b6','');";
 }
 if(isset($GETPARAB['b7']))
 {
     $bcount++;
-    $b7=$sred;
-	$requesttmp .="7,";
-    echo "        SetCookie('b7','');";
+  	$requesttmp .="7,";
 }
 if($bcount>0)
 {
@@ -356,126 +308,92 @@ if($bcount>0)
 
 $sqllinktype='';
 $ccount=0;
-$c=$sred;
-$c1=""; $c2=""; $c3=""; $c4=""; $c5=""; $c6="";$c7="";$c8="";
 $requesttmp="";
 if(isset($GETPARAC['c1']))
 {
     $ccount++;
-    $c1=$sred;
-	$requesttmp .= '1,';
-    echo "        SetCookie('c1','');";
+  	$requesttmp .= '1,';
 }
 if(isset($GETPARAC['c2']))
 {
     $ccount++;
-    $c2=$sred;
 	$requesttmp .="2,";
-    echo "        SetCookie('c2','');";
 }
 if(isset($GETPARAC['c3']))
 {
     $ccount++;
-    $c3=$sred;
 	$requesttmp .="3,";
-    echo "        SetCookie('c3','');";
 }
 if(isset($GETPARAC['c4']))
 {
     $ccount++;
-    $c4=$sred;
 	$requesttmp .="4,";
-    echo "        SetCookie('c4','');";
 }
 if(isset($GETPARAC['c5']))
 {
     $ccount++;
-    $c5=$sred;
 	$requesttmp .="5,";
-    echo "        SetCookie('c5','');";
 }
 if(isset($GETPARAC['c6']))
 {
     $ccount++;
-    $c6=$sred;
 	$requesttmp .="6,";
-    echo "        SetCookie('c6','');";
 }
 if(isset($GETPARAC['c7']))
 {
     $ccount++;
-    $c7=$sred;
 	$requesttmp .="7,";
-    echo "        SetCookie('c7','');";
 }
 if(isset($GETPARAC['c8']))
 {
     $ccount++;
-    $c8=$sred;
 	$requesttmp .="8,";
-    echo "        SetCookie('c8','');";
 }
 if($ccount>0)
 {
     $sqllinktype="l.linktype in (".rtrim($requesttmp, ',').")";
-    $c="";
 }
 
 $sqllinkquality='';
 $dcount=0;
-$d=$sred;
-$d1=""; $d2=""; $d3=""; $d4=""; $d5=""; $d6="";
 $requesttmp="";
 if(isset($GETPARAD['d1']))
 {
     $dcount++;
-    $d1=$sred;
-	$requesttmp .= '1,';
-    echo "        SetCookie('d1','');";
+  	$requesttmp .= '1,';
 }
 if(isset($GETPARAD['d2']))
 {
     $dcount++;
-    $d2=$sred;
-	$requesttmp .="2,";
-    echo "        SetCookie('d2','');";
+  	$requesttmp .="2,";
 }
 if(isset($GETPARAD['d3']))
 {
     $dcount++;
-    $d3=$sred;
 	$requesttmp .="3,";
-    echo "        SetCookie('d3','');";
 }
 if(isset($GETPARAD['d4']))
 {
     $dcount++;
-    $d4=$sred;
-	$requesttmp .="4,";
-    echo "        SetCookie('d4','');";
+  	$requesttmp .="4,";
 }
 if(isset($GETPARAD['d5']))
 {
     $dcount++;
-    $d5=$sred;
 	$requesttmp .="5,";
-    echo "        SetCookie('d5','');";
 }
 if(isset($GETPARAD['d6']))
 {
     $dcount++;
-    $d6=$sred;
 	$requesttmp .="6,";
-    echo "        SetCookie('d6','');";
 }
 if($dcount>0)
 {
     $sqllinkquality="l.linkquality in (".rtrim($requesttmp, ',').")";
-    $d="";
 }
 ?>
-
 	</script>
+
 </head>
 <body>
 	<div id="wrapper" class="width_1">
@@ -522,84 +440,83 @@ if($dcount>0)
 	</div>
         <?php
                         //echo $q."ddddd:".strlen($q).";sizeof q:".sizeof($q);
-						if($q==''&&$aid=='')
-						{
-              $errorsearch=1;
-							$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以没有哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
-						}
-						else if(strlen($q) > 25)
+            if($q==''&&$aid=='')
             {
-              $errorsearch=1;
-							$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以太长哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
+                $errorsearch=1;
+            	$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以没有哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
+            }
+	    	else if(strlen($q) > 25)
+            {
+                $errorsearch=1;
+				$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以太长哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
             }
             else
-						{
-							require("page_navi.php");
-							$conn=mysql_connect ($dbip, $dbuser, $dbpasswd) or die('数据库服务器连接失败：'.mysql_error());
-							mysql_select_db($dbname, $conn) or die('选择数据库失败');
-							mysql_query("set names utf8;");
+			{
+			    require("page_navi.php");
+			    $conn=mysql_connect ($dbip, $dbuser, $dbpasswd) or die('数据库服务器连接失败：'.mysql_error());
+			    mysql_select_db($dbname, $conn) or die('选择数据库失败');
+			    mysql_query("set names utf8;");
                             
-              $pagenum=30;
-              $DH_search_url="http://".$_SERVER['HTTP_HOST'].'/'.trim($_SERVER['REQUEST_URI'],"/");
-              $DH_search_url_nopage = preg_replace('/\&p\=[0-9]+/', '', $DH_search_url);
-              $DH_search_url =$DH_search_url_nopage."&p=";
-              $DH_search_url_only="http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?q='.$q.'&aid='.$aid;
-              //echo $DH_search_url; 
-              //$DH_search_url_nopage = "http://127.0.0.1/s/s.php?q=".$_REQUEST['q'];
-              //$DH_search_url = $DH_search_url_nopage."&p=";
+                $pagenum=30;
+                $DH_search_url="http://".$_SERVER['HTTP_HOST'].'/'.trim($_SERVER['REQUEST_URI'],"/");
+                $DH_search_url_nopage = preg_replace('/\&p\=[0-9]+/', '', $DH_search_url);
+                $DH_search_url =$DH_search_url_nopage."&p=";
+                $DH_search_url_only="http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?q='.$q.'&aid='.$aid;
+                //echo $DH_search_url; 
+                //$DH_search_url_nopage = "http://127.0.0.1/s/s.php?q=".$_REQUEST['q'];
+                //$DH_search_url = $DH_search_url_nopage."&p=";
 							
-							//if($aid!='')
-							//	$sql="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality ,l.linkway,p.hot,p.catcountry,p.cattype from link l,page p where l.pageid=p.id and l.author like '$aid' order by l.updatetime desc limit 0,60";
-							//if($q!='')
-							//	$sql="select * from page where title like '%$q%' or aka like '%$q%' order by updatetime desc limit 0,5";
-							$sql=" from link l,page p where l.pageid=p.id";
-							
-							if($q!='')
-							{
+			    //if($aid!='')
+			    //	$sql="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality ,l.linkway,p.hot,p.catcountry,p.cattype from link l,page p where l.pageid=p.id and l.author like '$aid' order by l.updatetime desc limit 0,60";
+			    //if($q!='')
+			    //	$sql="select * from page where title like '%$q%' or aka like '%$q%' order by updatetime desc limit 0,5";
+			    $sql=" from link l,page p where l.pageid=p.id";
+			
+			    if($q!='')
+			    {
                   //处理空格
                   $qs=preg_split("/[\s]+/s",$q);	
                   //print_r($qs);
                   $sql.=" and ( true ";
                   foreach ($qs as $key=>$eachq)
                   {
-								    $sql .=" and l.title like '%$eachq%' ";				
+				    $sql .=" and l.title like '%$eachq%' ";				
                   }
                   $sql.=" )";
-							}
-							if($aid!='')
-							{
-								$sql .=" and l.author like '$aid'";
-							}
-							if($acount>0)
-							{
-								$sql .=" and ".$sqlmovietype;
-							}
-							if($bcount>0)
-							{
-								$sql .=" and ".$sqllinkway;
-							}
-							if($ccount>0)
-							{
-								$sql .=" and ".$sqllinktype;
-							}
-							if($dcount>0)
-							{
-								$sql .=" and ".$sqllinkquality;
-							}
-              $beginnum=($p-1)*$pagenum;
-							$sqldetail="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality,l.linktype,l.linkway,p.hot,p.catcountry,p.cattype ".$sql." order by l.updatetime desc limit ".$beginnum.",".$pagenum;
+				}
+			    if($aid!='')
+			    {
+			    	$sql .=" and l.author like '$aid'";
+			    }
+			    if($acount>0)
+			    {
+			    	$sql .=" and ".$sqlmovietype;
+			    }
+			    if($bcount>0)
+			    {
+			    	$sql .=" and ".$sqllinkway;
+			    }
+			    if($ccount>0)
+			    {
+			    	$sql .=" and ".$sqllinktype;
+			    }
+			    if($dcount>0)
+			    {
+			    	$sql .=" and ".$sqllinkquality;
+			    }
+                $beginnum=($p-1)*$pagenum;
+				$sqldetail="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality,l.linktype,l.linkway,p.hot,p.catcountry,p.cattype ".$sql." order by l.updatetime desc limit ".$beginnum.",".$pagenum;
               //echo $sqldetail;
-							$sqlcount ="select count(*) ".$sql;
-						    $results=dh_mysql_query($sqlcount);
-							$counts = mysql_fetch_array($results);
-							$count = $counts[0];
-              if($count==0)
-              {
-                $errorsearch=1;
-								$errormsg =  "</br>".'  <div style="text-align:center">好像没有相关资源哦！请更换关键词重新搜索，或者耐心等待，只要不断关注影粉搜搜网，就会第一时间得到资源，您不会失望哦！</div>'."</br>";
-              }
-						}
-            
+			    $sqlcount ="select count(*) ".$sql;
+			    $results=dh_mysql_query($sqlcount);
+			    $counts = mysql_fetch_array($results);
+			    $count = $counts[0];
+                if($count==0)
+                {
+                  $errorsearch=1;
+			      $errormsg =  "</br>".'  <div style="text-align:center">好像没有相关资源哦！请更换关键词重新搜索，或者耐心等待，只要不断关注影粉搜搜网，就会第一时间得到资源，您不会失望哦！</div>'."</br>";
+                }
+			}
         ?>
 		<!-- header -->
 		<div id="middle" class="width_2" style="min-height:600px;_height:600px;">
@@ -647,45 +564,45 @@ if($dcount>0)
                     <div class="searchfilter"><span class="searchsubmit" style="padding:5px;cursor:pointer" onclick="changeall()">取消过滤</span> <a class="searchsubmit" style="padding:5px" href="<?php echo $DH_search_url_only?>">过滤结果</a></div>
                     <b>影视类型：</b></br>
 					    <div class="lifloat tc">
-                <a id="a"  onclick="changealltype('a',5)">全部</a>
-                <a id="a1" onclick="changetype('a1','a')">电影</a>
-                <a id="a2" onclick="changetype('a2','a')">电视</a>
-                <a id="a3" onclick="changetype('a3','a')">综艺</a>
-                <a id="a4" onclick="changetype('a4','a')">动画</a>
-                <a id="a5" onclick="changetype('a5','a')">纪录</a>
-              </div>
+                            <a id="a"  onclick="changealltype('a',5)">全部</a>
+                            <a id="a1" onclick="changetype('a1','a')">电影</a>
+                            <a id="a2" onclick="changetype('a2','a')">电视</a>
+                            <a id="a3" onclick="changetype('a3','a')">综艺</a>
+                            <a id="a4" onclick="changetype('a4','a')">动画</a>
+                            <a id="a5" onclick="changetype('a5','a')">纪录</a>
+                        </div>
                     <b>资源类型：</b></br>
 					    <div class="lifloat tc">
-                <a id="b"  onclick="changealltype('b',7)">全部</a>
-                <a id="b1" onclick="changetype('b1','b')">影讯</a>
-                <a id="b2" onclick="changetype('b2','b')">影评</a>
-                <a id="b3" onclick="changetype('b3','b')">预告</a>
-                <a id="b4" onclick="changetype('b4','b')">活动</a>
-                <a id="b5" onclick="changetype('b5','b')">购票</a>
-                <a id="b6" onclick="changetype('b6','b')">下载</a>
-                <a id="b7" onclick="changetype('b7','b')">在线</a>
-              </div>
+                            <a id="b"  onclick="changealltype('b',7)">全部</a>
+                            <a id="b1" onclick="changetype('b1','b')">影讯</a>
+                            <a id="b2" onclick="changetype('b2','b')">影评</a>
+                            <a id="b3" onclick="changetype('b3','b')">预告</a>
+                            <a id="b4" onclick="changetype('b4','b')">活动</a>
+                            <a id="b5" onclick="changetype('b5','b')">购票</a>
+                            <a id="b6" onclick="changetype('b6','b')">下载</a>
+                            <a id="b7" onclick="changetype('b7','b')">在线</a>
+                        </div>
                     <b>资源形式：</b></br>
 					    <div class="lifloat tc">
-				        <a id="c"  onclick="changealltype('c',8)">全部</a> 
-				        <a id="c1" onclick="changetype('c1','c')">迅雷</a> 
-			          <a id="c4" onclick="changetype('c4','c')">磁力</a>
-				        <a id="c5" onclick="changetype('c5','c')">电驴</a>
-			          <a id="c6" onclick="changetype('c6','c')">网盘</a>
-				        <a id="c7" onclick="changetype('c7','c')">网页</a>
-				        <a id="c8" onclick="changetype('c8','c')">综合</a>
-				        <a id="c2" onclick="changetype('c2','c')">FTP </a>
-				        <a id="c3" onclick="changetype('c3','c')">B T </a>
-              </div>
+				            <a id="c"  onclick="changealltype('c',8)">全部</a> 
+				            <a id="c1" onclick="changetype('c1','c')">迅雷</a> 
+			                <a id="c4" onclick="changetype('c4','c')">磁力</a>
+				            <a id="c5" onclick="changetype('c5','c')">电驴</a>
+			                <a id="c6" onclick="changetype('c6','c')">网盘</a>
+				            <a id="c7" onclick="changetype('c7','c')">在线</a>
+				            <a id="c8" onclick="changetype('c8','c')">综合</a>
+				            <a id="c2" onclick="changetype('c2','c')">FTP </a>
+				            <a id="c3" onclick="changetype('c3','c')">B T </a>
+                        </div>
                     <b>资源质量：</b></br>
 					    <div class="lifloat tc">
-					     <a id="d"  onclick="changealltype('d',5)">全部</a>
-					     <a id="d1" onclick="changetype('d1','d')">抢先</a>
-					     <a id="d2" onclick="changetype('d2','d')">修正</a>
-					     <a id="d3" onclick="changetype('d3','d')">普清</a>
-					     <a id="d4" onclick="changetype('d4','d')">高清</a>
-					     <a id="d5" onclick="changetype('d5','d')">超清</a>
-             </div>
+					        <a id="d"  onclick="changealltype('d',5)">全部</a>
+					        <a id="d1" onclick="changetype('d1','d')">抢先</a>
+					        <a id="d2" onclick="changetype('d2','d')">修正</a>
+					        <a id="d3" onclick="changetype('d3','d')">普清</a>
+					        <a id="d4" onclick="changetype('d4','d')">高清</a>
+					        <a id="d5" onclick="changetype('d5','d')">超清</a>
+                        </div>
                 </div>
 			</div>			
 			<div id="content"  class="width_3 listcontent">
@@ -721,11 +638,36 @@ if($dcount>0)
 			© 2015 - 2018 &nbsp;<a href="http://s.yfsoso.com" title="电影大全,电视剧大全">影粉搜搜网</a> &nbsp;All Rights Reserved <a href="http://www.miibeian.gov.cn" target="_blank">免备案</a>
 			</div>
 			<div style="margin:7px;color:#777">
+			本站旨在影视宣传和学习交流,所有内容程序自动收集发布,仅提供资源页面的搜索链接，如侵犯了您的权益,请联系我们删除:a#yfsoso.com,欢迎举报违法问题！
 			</div>
 		</div>
 	</div>
 	<!-- wrapper -->
 	<script type="text/javascript">
+    function cookiegoto(id,id1,href)
+    {
+        if(id=='a')
+            changealltype('a',5);
+        if(id=='b')
+            changealltype('b',7);
+        if(id=='c')
+            changealltype('c',8);
+        if(id=='d')
+            changealltype('d',5);
+        
+        SetCookie(id1,'');
+        location.href=href;
+    }
+    function setTypeStyle(id)
+    {
+        id.style.color="#a01200";
+        id.style.border="1px solid #a01200";
+    }
+    function cancleTypeStyle(id)
+    {
+        id.style.color="";
+        id.style.border="";
+    }
     function gettypeall()
     {
         getalltype('a',5);
@@ -735,6 +677,7 @@ if($dcount>0)
     };
     function getalltype(id,num)
     {
+        var count=0;
         for(var i=1;i<=num;i++)
         {
             var eachid = id+i;     
@@ -742,15 +685,17 @@ if($dcount>0)
             var idcookie = getCookie(eachid);
             if(idcookie!=null)
             {
-              idvar.style.color="#a01200";
-              idvar.style.border="1px solid #a01200";
+              count++;
+              setTypeStyle(idvar);
             }
             else
             {
-              idvar.style.color="";
-              idvar.style.border="";
+              cancleTypeStyle(idvar);
             }
         }
+        var mainid =  document.getElementById(id);
+        if(count==0)
+          setTypeStyle(mainid);
     };
     function changeall()
     {
@@ -767,15 +712,13 @@ if($dcount>0)
             changetypenone(changenoneid);
         }
         var idvar =  document.getElementById(id);
-        idvar.style.color='<?php echo $redcolor; ?>';
-        idvar.style.border='<?php echo $redborder; ?>';
+        setTypeStyle(idvar);
     };
     function changetypenone(id)
     {
         var idvar =  document.getElementById(id);
         DelCookie(id);
-        idvar.style.color='';
-        idvar.style.border='';
+        cancleTypeStyle(idvar);
     };
     function changetype(id,id2)
     {
@@ -784,19 +727,17 @@ if($dcount>0)
         if(idcookie!=null)
         {
             DelCookie(id);
-            idvar.style.color='';
-            idvar.style.border='';
+            cancleTypeStyle(idvar);
         }
         else
         {
             SetCookie(id,'');
-            idvar.style.color='<?php echo $redcolor; ?>';
-            idvar.style.border='<?php echo $redborder; ?>';
-            var idvar =  document.getElementById(id2);
-            idvar.style.color='';
-            idvar.style.border='';
+            setTypeStyle(idvar);
+            var idvar2 =  document.getElementById(id2);
+            cancleTypeStyle(idvar2);
         }
     };
+
 	function startTime()
 	{
 		var today=new Date();
@@ -809,11 +750,14 @@ if($dcount>0)
 		document.getElementById('txt').innerHTML=h+":"+m+":"+s;
 		t=setTimeout('startTime()',500);
 	};
+
 	function checkTime(i)
 	{
 		if (i<10) 
-		  {i="0" + i;}
-		  return i;
+		{
+      		i="0" + i;
+    	}
+		return i;
 	};
 			                     
 	//收藏本站
@@ -831,17 +775,6 @@ if($dcount>0)
 	    }
 	};
 
-	function cnzz()
-	{
-		(function() {
-			var cnzz = document.createElement('script');
-			cnzz.type = 'text/javascript';
-			cnzz.src = 'http://s22.cnzz.com/z_stat.php?id=1254506275&web_id=1254506275';
-			(document.getElementsByTagName('body')[0]
-			||document.getElementsByTagName('head')[0]).appendChild(cnzz);
-		})();
-	};
-
 	window.onscroll = function()
 	{
 		var h =document.body.scrollTop;
@@ -857,6 +790,7 @@ if($dcount>0)
 			top.style.display = 'none';
 		}
 	};
+
     function dhsay()
     {
     	//延时调用 dh_say.php 节省时间
@@ -867,11 +801,11 @@ if($dcount>0)
 	{
 		// 公共的函数
 		document.getElementById('submittext').focus();
-    gettypeall();
+        gettypeall();
 		startTime();
 		dhsay();
-    //百度分享
-	  window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        //百度分享
+	    window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
 	};
 	</script>	
   <script src="http://s95.cnzz.com/z_stat.php?id=1254506275" language="JavaScript"></script> 

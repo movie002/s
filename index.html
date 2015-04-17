@@ -232,6 +232,16 @@
 	</div>
 	<!-- wrapper -->
 	<script type="text/javascript">
+    function setTypeStyle(id)
+    {
+        id.style.color="#a01200";
+        id.style.border="1px solid #a01200";
+    }
+    function cancleTypeStyle(id)
+    {
+        id.style.color="";
+        id.style.border="";
+    }
     function gettypeall()
     {
         getalltype('a',5);
@@ -241,6 +251,7 @@
     };
     function getalltype(id,num)
     {
+        var count=0;
         for(var i=1;i<=num;i++)
         {
             var eachid = id+i;     
@@ -248,15 +259,17 @@
             var idcookie = getCookie(eachid);
             if(idcookie!=null)
             {
-              idvar.style.color="#a01200";
-              idvar.style.border="1px solid #a01200";
+              count++;
+              setTypeStyle(idvar);
             }
             else
             {
-              idvar.style.color="";
-              idvar.style.border="";
+              cancleTypeStyle(idvar);
             }
         }
+        var mainid =  document.getElementById(id);
+        if(count==0)
+          setTypeStyle(mainid);
     };
     function changeall()
     {
@@ -273,15 +286,13 @@
             changetypenone(changenoneid);
         }
         var idvar =  document.getElementById(id);
-        idvar.style.color="#a01200";
-        idvar.style.border="1px solid #a01200";
+        setTypeStyle(idvar);
     };
     function changetypenone(id)
     {
         var idvar =  document.getElementById(id);
         DelCookie(id);
-        idvar.style.color='';
-        idvar.style.border='';
+        cancleTypeStyle(idvar);
     };
     function changetype(id,id2)
     {
@@ -296,11 +307,9 @@
         else
         {
             SetCookie(id,'');
-            idvar.style.color="#a01200";
-            idvar.style.border="1px solid #a01200";
-            var idvar =  document.getElementById(id2);
-            idvar.style.color='';
-            idvar.style.border='';
+            setTypeStyle(idvar);
+            var idvar2 =  document.getElementById(id2);
+            cancleTypeStyle(idvar2);
         }
     };
 
@@ -321,8 +330,8 @@
 	{
 		if (i<10) 
 		{
-      i="0" + i;
-    }
+      		i="0" + i;
+    	}
 		return i;
 	};
 			                     
@@ -356,12 +365,13 @@
 			top.style.display = 'none';
 		}
 	};
-  function dhsay()
-  {
-  	//延时调用 dh_say.php 节省时间
-   var iframe_say = document.getElementById('iframe_say');
-   iframe_say.innerHTML = '<iframe id="iframe_say" allowtransparency="true" width="95%" height="16px" src="http://yfsoso.com/dh_say.php" frameBorder="0" scrolling="no" ></iframe>';
-  };
+
+    function dhsay()
+    {
+    	//延时调用 dh_say.php 节省时间
+    	var iframe_say = document.getElementById('iframe_say');
+    	iframe_say.innerHTML = '<iframe id="iframe_say" allowtransparency="true" width="95%" height="16px" src="http://yfsoso.com/dh_say.php" frameBorder="0" scrolling="no" ></iframe>';
+    };
 	window.onload = function ()
 	{
 		// 公共的函数
