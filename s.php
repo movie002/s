@@ -550,10 +550,12 @@ if($dcount>0)
 					<div style="border-bottom:1px solid #bbb;text-align:center"><b>相关影视</b></div>
                         <div style="padding: 5px;line-height: 25px;"> 
                         <?php 
-                            if($errorsearch==0)
+                            if($q!='')
                             {
 					    		$sqlpage="select * from page where title like '%$q%' or aka like '%$q%' order by hot desc limit 0,10";
                                 putpageresult($sqlpage);
+                                echo '<a href="%home%/sx.php?q='.$q.'">更多影视(镜像1)</a>';
+                                echo '<a href="%home%/sm.php?q='.$q.'">更多影视(镜像2)</a>';
                             }
                         ?> 
                     </div>
