@@ -91,7 +91,8 @@ function dh_pagenum_link($link,$page)
 //	require_once('360safe/360webscan.php');
 //}
 
-$dbip='127.0.0.1';
+$dbip='movie002.com';
+#$dbip='127.0.0.1';
 $dbuser='root';
 $dbpasswd='qazxsw';
 $dbname='movie002';
@@ -475,7 +476,7 @@ if($dcount>0)
 			    //	$sql="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality ,l.linkway,p.hot,p.catcountry,p.cattype from link l,page p where l.pageid=p.id and l.author like '$aid' order by l.updatetime desc limit 0,60";
 			    //if($q!='')
 			    //	$sql="select * from page where title like '%$q%' or aka like '%$q%' order by updatetime desc limit 0,5";
-			    $sql=" from link l,page p where l.pageid=p.id";
+			    $sql=" from link l,page p where l.pageid=p.id ";
 			
 			    if($q!='')
 			    {
@@ -485,13 +486,13 @@ if($dcount>0)
                   $sql.=" and ( true ";
                   foreach ($qs as $key=>$eachq)
                   {
-				    $sql .=" and l.title like '%$eachq%' ";				
+				    $sql .=" and l.title like '%$eachq%' ";
                   }
                   $sql.=" )";
 				}
 			    if($aid!='')
 			    {
-			    	$sql .=" and l.author like '$aid'";
+			    	$sql .=" and l.author like '%$aid%'";
 			    }
 			    if($acount>0)
 			    {
@@ -511,7 +512,7 @@ if($dcount>0)
 			    }
                 $beginnum=($p-1)*$pagenum;
 				$sqldetail="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality,l.linktype,l.linkway,p.hot,p.catcountry,p.cattype ".$sql." order by l.updatetime desc limit ".$beginnum.",".$pagenum;
-              //echo $sqldetail;
+                echo $sqldetail;
 			    $sqlcount ="select count(*) ".$sql;
 			    $results=dh_mysql_query($sqlcount);
 			    $counts = mysql_fetch_array($results);
