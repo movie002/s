@@ -46,7 +46,7 @@ function putsearchresult($sql,$DH_search_url_nopage)
     $linkquality=array('未','抢','修','普','高','超','三','三');
     $linkquality2=array('未知','抢先','修正','普清','高清','超清','三维','三维');
     $linkway=array('未','讯','评','预','活','票','下','线');
-    $linkway2=array('未知','影讯','影评','预告','活动','购票','下载','在线');
+    $linkway2=array('未知','影讯','影评','预告','活动','购票','下载','在线','字幕');
     $linktype=array('未','迅','FT','BT','磁','驴','盘','页','百','快','综');
     $linktype2=array('未知资源','迅雷资源','FTP 资源','B T 资源','磁力链接','电驴资源','网盘资源','网页观看','百度影音','快播资源','综合资源');
 	$results=dh_mysql_query($sql);
@@ -299,6 +299,11 @@ if(isset($GETPARAB['b7']))
 {
     $bcount++;
   	$requesttmp .="7,";
+}
+if(isset($GETPARAB['b8']))
+{
+    $bcount++;
+  	$requesttmp .="8,";
 }
 if($bcount>0)
 {
@@ -583,6 +588,7 @@ if($dcount>0)
                             <a id="b5" onclick="changetype('b5','b')">购票</a>
                             <a id="b6" onclick="changetype('b6','b')">下载</a>
                             <a id="b7" onclick="changetype('b7','b')">在线</a>
+                            <a id="b8" onclick="changetype('b8','b')">字幕</a>
                         </div>
                     <b>资源形式：</b></br>
 					    <div class="lifloat tc">
