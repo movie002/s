@@ -91,8 +91,8 @@ function dh_pagenum_link($link,$page)
 //	require_once('360safe/360webscan.php');
 //}
 
-$dbip='movie002.com';
-#$dbip='127.0.0.1';
+#$dbip='movie002.com';
+$dbip='127.0.0.1';
 $dbuser='root';
 $dbpasswd='qazxsw';
 $dbname='movie002';
@@ -581,7 +581,7 @@ if($dcount>0)
                         </div>
                     <b>资源类型：</b></br>
 					    <div class="lifloat tc">
-                            <a id="b"  onclick="changealltype('b',7)">全部</a>
+                            <a id="b"  onclick="changealltype('b',8)">全部</a>
                             <a id="b1" onclick="changetype('b1','b')">影讯</a>
                             <a id="b2" onclick="changetype('b2','b')">影评</a>
                             <a id="b3" onclick="changetype('b3','b')">预告</a>
@@ -680,7 +680,7 @@ if($dcount>0)
     function gettypeall()
     {
         getalltype('a',5);
-        getalltype('b',7);
+        getalltype('b',8);
         getalltype('c',8);
         getalltype('d',5);
     };
@@ -709,7 +709,7 @@ if($dcount>0)
     function changeall()
     {
         changealltype('a',5);
-        changealltype('b',7);
+        changealltype('b',8);
         changealltype('c',8);
         changealltype('d',5);
     };
