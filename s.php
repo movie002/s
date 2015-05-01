@@ -445,7 +445,7 @@ if($dcount>0)
 	<!-- header-inner -->			
 	</div>
         <?php
-                        //echo $q."ddddd:".strlen($q).";sizeof q:".sizeof($q);
+            echo $q."ddddd:".strlen($q).";sizeof q:".sizeof($q);
             if($q==''&&$aid=='')
             {
                 $errorsearch=1;
@@ -560,8 +560,8 @@ if($dcount>0)
                             {
 					    		$sqlpage="select * from page where title like '%$q%' or aka like '%$q%' order by hot desc limit 0,10";
                                 putpageresult($sqlpage);
-                                echo '<a href="%home%/sx.php?q='.$q.'">更多影视(镜像1)</a>';
-                                echo '<a href="%home%/sm.php?q='.$q.'">更多影视(镜像2)</a>';
+                                echo '<a href="sx.php?q='.$q.'">更多影视(镜像1)</a>';
+                                echo '<a href="sm.php?q='.$q.'">更多影视(镜像2)</a>';
                             }
                         ?> 
                     </div>
