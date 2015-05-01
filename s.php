@@ -451,7 +451,7 @@ if($dcount>0)
                 $errorsearch=1;
             	$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以没有哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
             }
-	    	else if(strlen($q) > 25)
+	    	else if(strlen($q) > 32)
             {
                 $errorsearch=1;
 				$errormsg =  "</br>".'  <div style="text-align:center">关键词不可以太长哦！请更换关键词重新搜索，谢谢！</div>'."</br>";
