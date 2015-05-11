@@ -512,7 +512,7 @@ if($dcount>0)
 			    }
                 $beginnum=($p-1)*$pagenum;
 				$sqldetail="select l.link,l.title,l.updatetime,l.author,l.pageid,l.linkquality,l.linktype,l.linkway,p.hot,p.catcountry,p.cattype ".$sql." order by l.updatetime desc limit ".$beginnum.",".$pagenum;
-                echo $sqldetail;
+                //echo $sqldetail;
 			    $sqlcount ="select count(*) ".$sql;
 			    $results=dh_mysql_query($sqlcount);
 			    $counts = mysql_fetch_array($results);
